@@ -19,7 +19,11 @@
                     <!-- Search Bar -->
                     <h2 class="fw-bold text-info">Search for a City:</h2>
                     <div class="mb-3 pt-2">
-                        <input type="text" class="form-control" id="city-input" placeholder="Where to?">
+                        <input type="text" class="form-control" id="city-input" placeholder="Enter a City Name">
+                        <div id='search-history-dropdown' class="dropdown-menu" style="display: none;">
+                            <ul id="search-history-list"></ul>
+                                <!-- Search History will be appended here -->
+                        </div>
                     </div>
                     <div class="d-grid gap-2">
                         <button id="search-btn" class="btn btn-success search-btn" type="button">Search</button>
@@ -47,18 +51,19 @@
                         <button class="btn mt-2 btn-primary capitol-btn" type="button" >Ankara</button>
                     </div>
                 </div>
-                <!-- Forecast Top -->
+                <!-- Forecast Section -->
+                    <!-- Today's Forecast -->
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-sm-10 mt-3">
                             <div class="current-forecast">
-                                <h3 class="fw-bold text-info">Current Forecast:</h3>
+                                <h3 class="fw-bold text-info">Today's Forecast:</h3>
                                 <div class="row">
                                     <div class="col-6 bg-info text-white rounded-3">
                                         <h4 class="fw-bold" id="city-name">City Name</h4>
                                         <p class="date" id="date0">Date!</p>
-                                        <p class="currentTemp" id="currentTemp">CurrentTemp!</p>
-                                        <p class="minTemp" id="minTemp0">MinTemp!</p>
+                                        <p class="temp" id="temp0">CurrentTemp!</p>
+                                        <p class="min" id="minTemp0">MinTemp!</p>
                                         <p class="maxTemp" id="maxTemp0">MaxTemp!</p>
                                         <p class= "humidity" id="humidity0">Humidity! </p>
                                         <p class= "wind" id="wind0">Wind! </p>
@@ -75,8 +80,7 @@
                             <div id="iconsContainer">
                                 <div class="icon">
                                     <p class="date" id="date1">Date!</p>
-                                    <p class="minTemp" id="minTemp1">MinTemp!</p>
-                                    <p class="maxTemp" id="maxTemp1">MaxTemp!</p>
+                                    <p class="temp" id="temp1">Temp!</p>
                                     <p class= "humidity" id="humidity1">Humidity! </p>
                                     <p class= "wind" id="wind1">Wind!! </p>
                                     <img src="" class="img" alt="icon" id="icon1">
@@ -87,8 +91,7 @@
                             <div id="iconsContainer">
                                 <div class="icon">
                                     <p class="date" id="date2">Date!</p>
-                                    <p class="minTemp" id="minTemp2">MinTemp!</p>
-                                    <p class="maxTemp" id="maxTemp2">MaxTemp!</p>
+                                    <p class="temp" id="temp2">Temp!</p>
                                     <p class= "humidity" id="humidity2">Humidity! </p>
                                     <p class= "wind" id="wind2">Wind! </p> 
                                     <img src="" class="img" alt="icon" id="icon2">
@@ -99,8 +102,7 @@
                             <div id="iconsContainer">
                                 <div class="icon">
                                     <p class="date" id="date3">Date!</p>
-                                    <p class="minTemp" id="minTemp3">MinTemp!</p>
-                                    <p class="maxTemp" id="maxTemp3">MaxTemp!</p>
+                                    <p class="temp" id="temp3">Temp!</p>
                                     <p class= "humidity" id="humidity3">Humidity! </p>  
                                     <p class= "wind" id="wind3">Wind!! </p>  
                                     <img src="" class="img" alt="icon" id="icon3">
@@ -111,8 +113,7 @@
                             <div id="iconsContainer">
                                 <div class="icon">
                                     <p class="date" id="date4">Date!</p>
-                                    <p class="minTemp" id="minTemp4">MinTemp!</p>
-                                    <p class="maxTemp" id="maxTemp4">MaxTemp!</p>
+                                    <p class="temp" id="temp4">Temp!</p>
                                     <p class= "humidity" id="humidity4">Humidity! </p>
                                     <p class= "wind" id="wind4">Wind!! </p>
                                     <img src="" class="img" alt="icon" id="icon4">
@@ -123,8 +124,7 @@
                             <div id="iconsContainer">
                                 <div class="icon">
                                     <p class="date" id="date5">Date!</p>
-                                    <p class="minTemp" id="minTemp5">MinTemp!</p>
-                                    <p class="maxTemp" id="maxTemp5">MaxTemp!</p>
+                                    <p class="temp" id="temp5">Temp!</p>
                                     <p class= "humidity" id="humidity5">Humidity! </p>
                                     <p class= "wind" id="wind5">Wind!! </p>
                                     <img src="" class="img" alt="icon" id="icon5">
