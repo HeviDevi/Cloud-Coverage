@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud-Coverage</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> 
+</head>
+<body class="bg-dark">
+   
+    <header class="container-fluid p-2 weather-header">
+        <h1 class="text-center fw-bold text-info">Cloud-Coverage</h1>
+        <h3 class="text-center fw-bold text-info">The Weather Watching app</h3>
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 p-2">
+                    <!-- Search Bar -->
+                    <h2 class="fw-bold text-info">Search for a City:</h2>
+                    <div class="mb-3 pt-2">
+                        <input type="text" class="form-control" id="city-input" placeholder="Where to?">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button id="search-btn" class="btn btn-success search-btn" type="button">Search</button>
+                    </div>
+                    <div id="border-line"></div>
+
+                    <!-- Suggested Cities -->
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button">Washington D.C.</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >London</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Paris</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Madrid</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Berlin</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Tokyo</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Riyadh</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Seoul</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Beijing</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Moscow</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >New Delhi</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Cairo</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Sydney</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Ottawa</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Mexico City</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Brasilia</button>
+                        <button class="btn mt-2 btn-primary capitol-btn" type="button" >Ankara</button>
+                    </div>
+                </div>
+                <!-- Forecast Top -->
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-sm-10 mt-3">
+                            <div class="current-forecast">
+                                <h3 class="fw-bold text-info">Current Forecast:</h3>
+                                <div class="row">
+                                    <div class="col-6 bg-info text-white rounded-3">
+                                        <h4 class="fw-bold" id="city-name">City Name</h4>
+                                        <p class="date" id="date0">Date!</p>
+                                        <img src="assets/icons/01d.png" class="img" alt="icon" id="icon0">
+                                        <p class="currentTemp" id="currentTemp">CurrentTemp!</p>
+                                        <p class="minTemp" id="minTemp0">MinTemp!</p>
+                                        <p class="maxTemp" id="maxTemp0">MaxTemp!</p>
+                                        <p class= "humidity" id="humidity0">Humidity! </p>
+                                        <p class= "wind" id="wind0">Wind! </p>
+                                        
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5 Day Forecast Cards -->
+                    <h3 class="mt-3 fw-bold text-info">5 Day Forecast:</h3>
+                    <div class="row forecastCards justify-content-space-between text-white">
+                        <div id="forecast-card-1" class="col-2 row-4 bg-info rounded-3">
+                            <div id="iconsContainer">
+                                <div class="icon">
+                                    <p class="date" id="date1">Date!</p>
+                                    <img src="assets/icons/01d.png" class="img" alt="icon" id="icon1">
+                                    <p class="minTemp" id="minTemp1">MinTemp!</p>
+                                    <p class="maxTemp" id="maxTemp1">MaxTemp!</p>
+                                    <p class= "humidity" id="humidity1">Humidity! </p>
+                                    <p class= "wind" id="wind1">Wind! </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="forecast-card-2" class="col-2 row-4 bg-info rounded-3">
+                            <div id="iconsContainer">
+                                <div class="icon">
+                                    <p class="date" id="date2">Date!</p>
+                                    <img src="assets/icons/01d.png" class="img" alt="icon" id="icon2">
+                                    <p class="minTemp" id="minTemp2">MinTemp!</p>
+                                    <p class="maxTemp" id="maxTemp2">MaxTemp!</p>
+                                    <p class= "humidity" id="humidity2">Humidity! </p>
+                                    <p class= "wind" id="wind2">Wind! </p> 
+                                </div>
+                            </div>
+                        </div>
+                        <div id="forecast-card-3" class="col-2 row-4 bg-info --bs-warning-border-subtle rounded-3">
+                            <div id="iconsContainer">
+                                <div class="icon">
+                                    <p class="date" id="date3">Date!</p>
+                                    <img src="assets/icons/01d.png" class="img" alt="icon" id="icon3">
+                                    <p class="minTemp" id="minTemp3">MinTemp!</p>
+                                    <p class="maxTemp" id="maxTemp3">MaxTemp!</p>
+                                    <p class= "humidity" id="humidity3">Humidity! </p>  
+                                    <p class= "wind" id="wind3">Wind! </p>  
+                                </div>
+                            </div>
+                        </div>
+                        <div id="forecast-card-4" class="col-2 row4 bg-info rounded-3">
+                            <div id="iconsContainer">
+                                <div class="icon">
+                                    <p class="date" id="date4">Date!</p>
+                                    <img src="assets/icons/01d.png" class="img" alt="icon" id="icon4">
+                                    <p class="minTemp" id="minTemp4">MinTemp!</p>
+                                    <p class="maxTemp" id="maxTemp4">MaxTemp!</p>
+                                    <p class= "humidity" id="humidity4">Humidity! </p>
+                                    <p class= "wind" id="wind4">Wind! </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="forecast-card-5" class="col-2 row-4 bg-info rounded-3">
+                            <div id="iconsContainer">
+                                <div class="icon">
+                                    <p class="date" id="date5">Date!</p>
+                                    <img src="assets/icons/01d.png" class="img" alt="icon" id="icon5">
+                                    <p class="minTemp" id="minTemp5">MinTemp!</p>
+                                    <p class="maxTemp" id="maxTemp5">MaxTemp!</p>
+                                    <p class= "humidity" id="humidity5">Humidity! </p>
+                                    <p class= "wind" id="wind5">Wind! </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="assets/script.js"></script>
+    
+</body>
+</html>
+<html>
