@@ -2,3 +2,7 @@
 .forecastCards .col-2 {
     margin-right: 10px;
 }
+
+#search-history-list {
+   cursor: pointer;
+}
