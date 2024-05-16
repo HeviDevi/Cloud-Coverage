@@ -25,16 +25,23 @@ let displayWeatherData = (data) => {
 };
 //fetching data from the openweathermap api using a template literal, returns temrature in fahrenheit.
 function getWeatherData(chosenCity) {
+    return new Promise ((resolve, reject) => {
     fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${chosenCity}&appid=28d152345e91987cbfc03a794bbf7131&units=imperial`
-    ) .then(function(response) {
+    ) 
+    .then(function(response) {
         return response.json();
     })
     .then(function(data){
-        console.log(data);
-        console.log('Done');
+        console.log(`Weather data for ${chosenCity} is:`, data);
         displayWeatherData(data);
+        resolve(data);
     })
+    .catch(function(error) {
+        console.log('Invalid City Name');
+        reject(error);
+    })
+})
 }
 
 
@@ -44,26 +51,36 @@ searchEL.addEventListener('click', function(){
     let chosenCity = document.getElementById('city-input').value.trim();
     console.log(chosenCity);
 
-if(chosenCity !== ''){
-    getWeatherData(chosenCity);
-}
-if (!searchHistory.includes(chosenCity) && chosenCity !== '') {
-    // Save search history
-    searchHistory.push(chosenCity);
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    if(chosenCity !== ''){
+        getWeatherData(chosenCity)
+        .then(function() {
+            if (!searchHistory.includes(chosenCity)) {
+                // Save search history
+                searchHistory.push(chosenCity);
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
-    //Append new search history item
-    let listItem = document.createElement('li');
-    listItem.textContent = chosenCity;
-    searchHistoryEl.appendChild(listItem);
-    listItem.addEventListener('click', function(){
-        getWeatherData(chosenCity);
-    })
-}
-    searchInput.value = '';
-        
+                //Append new search history item
+                let listItem = document.createElement('li');
+                listItem.textContent = chosenCity;
+                searchHistoryEl.appendChild(listItem);
+                listItem.addEventListener('click', function(){
+                    getWeatherData(chosenCity);
+                })
+            }
+            searchInput.value = '';
+        })
+        .catch(function(error) {
+            console.log('Failed to get weather data: ', error.message);
+            searchInput.value = 'Invalid City Name';
+            searchInput.style.color = 'red';
+            
+            setTimeout(function(){
+            searchInput.value = ''
+            searchInput.style.color = 'black';
+        },1200);
+        });
+    }
 });
-
 
 capitolEL.forEach(function(btn) {
     btn.addEventListener('click', function(){
