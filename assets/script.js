@@ -3,7 +3,8 @@ let capitolEL = document.querySelectorAll('.capitol-btn');
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 let searchHistoryEl = document.getElementById('search-history-list');
 let searchInput = document.getElementById('city-input');
-// Add the missing 'let' keyword before the function declaration
+
+
 let displayWeatherData = (data) => { 
     document.getElementById('city-name').innerText = data.city.name;
     document.getElementById('minTemp0').innerText = 'Low of ' + data.list[0].main.temp_min.toFixed(0) + ' °F';
@@ -65,20 +66,28 @@ searchEL.addEventListener('click', function(){
                 searchHistoryEl.appendChild(listItem);
                 listItem.addEventListener('click', function(){
                     getWeatherData(chosenCity);
+                    searchInput.value = '';
                 })
             }
             searchInput.value = '';
         })
+
+        // If the city name is invalid, display an error message then clear the input field after 1.2 seconds
         .catch(function(error) {
             console.log('Failed to get weather data: ', error.message);
             searchInput.value = 'Invalid City Name';
             searchInput.style.color = 'red';
-            
             setTimeout(function(){
             searchInput.value = ''
             searchInput.style.color = 'black';
         },1200);
         });
+    }
+});
+
+searchInput.addEventListener('keydown', function(event){
+    if(event.key === 'Enter'){
+        searchEL.click();
     }
 });
 
@@ -107,6 +116,12 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
+    searchInput.addEventListener('keydown', function() {
+        searchHistoryDropdown.style.display = 'none';
+});
+ 
+  
+
     searchHistoryDropdown.addEventListener('mouseleave', function() {
         setTimeout(function(){
             searchHistoryDropdown.style.display = 'none';
@@ -125,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function(){
         listItem.addEventListener('click', function(){
             searchInput.value = chosenCity;
             getWeatherData(chosenCity);
+            searchInput.value = '';
             searchHistoryDropdown.style.display = 'none';
         });
     });
