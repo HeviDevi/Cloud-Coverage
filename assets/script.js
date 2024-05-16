@@ -1,13 +1,18 @@
 let searchEL = document.getElementById('search-btn');
 let capitolEL = document.querySelectorAll('.capitol-btn');
 let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-
-
-
-displayWeatherData = (data) => { 
+let searchHistoryEl = document.getElementById('search-history-list');
+let searchInput = document.getElementById('city-input');
+// Add the missing 'let' keyword before the function declaration
+let displayWeatherData = (data) => { 
     document.getElementById('city-name').innerText = data.city.name;
     document.getElementById('minTemp0').innerText = 'Low of ' + data.list[0].main.temp_min.toFixed(0) + ' °F';
     document.getElementById('maxTemp0').innerText = 'High of ' + data.list[0].main.temp_max.toFixed(0) + ' °F';
+    
+    // This Displays weather data for the next 5 days using the forEach method
+    //The api call that we are using returns weather data for every three hours.
+    //As there are 24 hours in a day, we are getting 8 data points for each day.
+    //By calling objects 8 objects apart from each other, we insure that each data point reresents a different day.
     const listNum = [0, 8, 16, 24, 32, 39];
     listNum.forEach((num, index) => {
         document.getElementById('date' + index).innerText = data.list[num].dt_txt.split(' ')[0];
@@ -18,7 +23,7 @@ displayWeatherData = (data) => {
     
     });
 };
-
+//fetching data from the openweathermap api using a template literal, returns temrature in fahrenheit.
 function getWeatherData(chosenCity) {
     fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${chosenCity}&appid=28d152345e91987cbfc03a794bbf7131&units=imperial`
@@ -32,13 +37,17 @@ function getWeatherData(chosenCity) {
     })
 }
 
-let searchHistoryEl = document.getElementById('search-history-list');
+
+
 
 searchEL.addEventListener('click', function(){
-    let chosenCity = document.getElementById('city-input').value;
+    let chosenCity = document.getElementById('city-input').value.trim();
     console.log(chosenCity);
-    getWeatherData(chosenCity);
 
+if(chosenCity !== ''){
+    getWeatherData(chosenCity);
+}
+if (!searchHistory.includes(chosenCity) && chosenCity !== '') {
     // Save search history
     searchHistory.push(chosenCity);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
@@ -47,17 +56,21 @@ searchEL.addEventListener('click', function(){
     let listItem = document.createElement('li');
     listItem.textContent = chosenCity;
     searchHistoryEl.appendChild(listItem);
-
     listItem.addEventListener('click', function(){
         getWeatherData(chosenCity);
     })
+}
+    searchInput.value = '';
+        
 });
+
 
 capitolEL.forEach(function(btn) {
     btn.addEventListener('click', function(){
         let chosenCity = this.innerText;
         console.log(chosenCity);
         getWeatherData(chosenCity);
+        searchInput.value = '';
     });
 });
 
@@ -65,8 +78,6 @@ document.addEventListener('DOMContentLoaded', function(){
     let chosenCity = 'Atlanta';
     console.log("Atlanta is the default city for this app.");
     getWeatherData(chosenCity);
-
-    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
     
     let searchInput = document.getElementById('city-input');
     let searchHistoryDropdown = document.getElementById('search-history-dropdown');
@@ -82,18 +93,21 @@ document.addEventListener('DOMContentLoaded', function(){
     searchHistoryDropdown.addEventListener('mouseleave', function() {
         setTimeout(function(){
             searchHistoryDropdown.style.display = 'none';
-        }, 500);
+        }, 1000);
     });
 
+       // Clear the search history element
+       searchHistoryEl.innerHTML = '';
 
-   searchHistory.forEach((chosenCity) => {
+   // Re-populate the search history element
+    searchHistory.forEach((chosenCity) => {
         let listItem = document.createElement('li');
         listItem.textContent = chosenCity;
         searchHistoryEl.appendChild(listItem);
 
         listItem.addEventListener('click', function(){
-            getWeatherData(chosenCity);
             searchInput.value = chosenCity;
+            getWeatherData(chosenCity);
             searchHistoryDropdown.style.display = 'none';
         });
     });
