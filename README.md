@@ -12,9 +12,9 @@ I accomplisehd this by leveraging the openweathermap api.
 
 Simply visit https://hevidevi.github.io/Cloud-Coverage/ and input a city in the field abouve the sumbit button. You may either click the submit button or click Enter.
 
-    
-    ![](assets/CloudCoverageScreenshot.png)
-
+    ```md
+   ![](/assets/images/CloudCoverageScreenshot.png)
+    ```
 
 ## Credits
 
